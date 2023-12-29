@@ -4,6 +4,7 @@ var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/hub/userC
 
 // connect to methods that hub invokes aka receives notifications from Hub
 connectionUserCount.on("updateTotalViews", (value) => {
+    console.log("Passed value from server: " + value);
     var newCountSpan = document.getElementById("totalViewsCounter");
     newCountSpan.innerText = value.toString();
 });
@@ -17,6 +18,7 @@ function newWindowLoadedOnClient() {
 function fulfilled() {
     // do something to start
     console.log("Connection to User Hub successfull!");
+    newWindowLoadedOnClient();
 }
 
 function rejected() {
