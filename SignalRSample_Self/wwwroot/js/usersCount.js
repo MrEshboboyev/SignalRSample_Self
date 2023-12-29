@@ -1,5 +1,9 @@
 ﻿// create connection
-var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/hub/userCount").build();
+var connectionUserCount = new signalR.HubConnectionBuilder()
+    .withUrl("/hub/userCount", signalR.HttpTransportType.WebSockets).build();
+//long Polling - timeout (1.5min)
+// ServerSentEvents - inline data from server (new value - new packet)
+// WebSockets - online with server
 
 
 // connect to methods that hub invokes aka receives notifications from Hub
