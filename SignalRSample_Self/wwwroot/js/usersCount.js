@@ -4,8 +4,15 @@ var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/hub/userC
 
 // connect to methods that hub invokes aka receives notifications from Hub
 connectionUserCount.on("updateTotalViews", (value) => {
-    console.log("Passed value from server: " + value);
+    console.log("Passed value from server for updateTotalViews: " + value);
     var newCountSpan = document.getElementById("totalViewsCounter");
+    newCountSpan.innerText = value.toString();
+});
+
+// connect to methods that hub invokes aka receives notifications from Hub
+connectionUserCount.on("updateTotalUsers", (value) => {
+    console.log("Passed value from server for updateTotalUsers: " + value);
+    var newCountSpan = document.getElementById("totalUsersCounter");
     newCountSpan.innerText = value.toString();
 });
 
